@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental GUI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Add any additional custom styles here */
+    </style>
+</head>
+
+<body class="bg-gray-600 font-julius">
+
+    <!-- Main Section -->
+    <div class="w-full bg-gradient-to-b from-gray-600 to-gray-500">
+        <section class="flex items-center justify-between max-w-screen-xl mx-auto opacity-100 sm:px-16">
+            <!-- Text Section -->
+            <div class="flex flex-col w-screen my-auto lg:w-3/5" id="main-content">
+                <div>
+                    <h1 class="py-2 text-4xl text-white font-bold text-center sm:py-4 sm:text-5xl md:text-7xl md:text-start w-[80vw] mx-auto md:mx-0 lg:w-fit word-wrap" id="main-title">
+                        <span>B</span><span>u</span><span>i</span><span>l</span><span>d</span><span>i</span><span>n</span><span>g</span><span> </span>
+                        <span>Y</span><span>o</span><span>u</span><span>r</span><br>
+                        <span class="typewriter" style="animation-delay: 0.2s;">F</span><span class="typewriter" style="animation-delay: 0.4s;">u</span><span class="typewriter" style="animation-delay: 0.6s;">t</span><span class="typewriter" style="animation-delay: 0.8s;">u</span><span class="typewriter" style="animation-delay: 1s;">r</span><span class="typewriter" style="animation-delay: 1.2s;">e</span>
+                        <span class="typewriter" style="animation-delay: 1.4s;">?</span>
+                        <span class="text-gray-500 cursor">|</span>
+                    </h1>
+
+                    <p class="py-4 text-lg tracking-wider text-center text-gray-200 md:text-xl md:text-start w-[80vw] mx-auto md:mx-0 md:w-fit">
+                        We have got your back!
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-x-4">
+                        <div class="flex flex-col items-center justify-center py-5">
+                            <!-- Rating Button -->
+                            <div class="flex gap-2">
+                                <button class="p-2 text-gray-800 transition duration-300 transform bg-yellow-600 rounded-full shadow-lg w-fit hover:bg-yellow-800 hover:scale-105">
+                                    Book Demo Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="relative flex-col items-center hidden my-auto lg:flex lg:w-2/5 lg:my-4 lg:mb-8">
+                <img src="/images/mainpage/image1.png" class="transition-transform ease-in-out transform rounded-bl-none shadow-xl w-72 duration-[1000ms] mx-auto" style="border-radius: 100px; border-bottom-left-radius: 0;">
+                <img src="/images/mainpage/image2.png" class="z-0 absolute w-40 transition-transform ease-in-out transform rounded-full rounded-tr-none -left-8 duration-[1000ms]">
+                <img src="/images/mainpage/image3.png" class="absolute w-32 transition-transform ease-in-out transform rounded-full rounded-br-none bottom-6 right-0 duration-[1000ms]">
+            </div>
+        </section>
+    </div>
+
+    <!-- Secondary Section -->
+    <section class="flex items-center justify-center max-w-screen-xl mx-auto mb-4 rounded-md opacity-100 sm:px-16" style="min-height: 60vh;">
+        <div class="flex flex-wrap justify-center w-full md:w-[70%] bg-white rounded-xl p-8">
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-x-2 w-[80vw] mx-auto md:mx-0 md:w-fit">
+                <div class="p-4 bg-gray-700 rounded-lg shadow-xl" id="job-openings">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 p-1 text-white rounded me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"></path>
+                    </svg>
+                    <span class="text-white">Job Openings</span>
+                </div>
+
+                <div class="p-4 bg-gray-700 rounded-lg shadow-xl" id="hackathons">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 p-1 text-white rounded me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"></path>
+                    </svg>
+                    <span class="text-white">Hackathons</span>
+                </div>
+
+                <div class="p-4 bg-gray-700 rounded-lg shadow-xl" id="interview-prep">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 p-1 text-white rounded me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.578 1.844c-.13.177-.44.248-.671.095A3 3 0 0 1 7.5 17.25v-1.007a3 3 0 0 1 .578-1.844c.13-.177.44-.248.671-.095A3 3 0 0 1 9 17.25zm3-6.75V10a3 3 0 0 1 .578-1.844c.13-.177.44-.248.671-.095A3 3 0 0 1 12 10v.507a3 3 0 0 1-.578 1.844c-.13.177-.44.248-.671.095A3 3 0 0 1 12 10zm3 4.5v1.007a3 3 0 0 1-.578 1.844c-.13.177-.44.248-.671.095A3 3 0 0 1 15 17.25v-1.007a3 3 0 0 1 .578-1.844c.13-.177.44-.248.671-.095A3 3 0 0 1 15 17.25z"></path>
+                    </svg>
+                    <span class="text-white">Interview Prep</span>
+                </div>
+
+                <div class="p-4 bg-gray-700 rounded-lg shadow-xl" id="internships">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 p-1 text-white rounded me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.75 12.75h14.5M4.75 15h14.5M4.75 9h14.5m-2.25-3H9.75m-2.25 0H6m4.5-3h5.25m1.5 0H12m-2.25 18h9a1.5 1.5 0 0 0 1.5-1.5V6.75a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v13.5A1.5 1.5 0 0 0 5.25 21H9.75M9 18h3m-3 1.5h6m-3-1.5v-1.5"></path>
+                    </svg>
+                    <span class="text-white">Internships</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full py-4 text-center text-white bg-gray-800">
+        <p>&copy; 2024 Car Rental. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Typewriter effect
+        const text = "Building Your Future?";
+        const typewriter = document.getElementById("main-title");
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                typewriter.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 200);
+            }
+        }
+
+        type();
+    </script>
+</body>
+
+</html>
