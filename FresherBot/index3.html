@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Video Carousel</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #333;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 9 / 16; /* Maintain the aspect ratio */
+            max-width: 150px; /* Default width for smaller screens */
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        /* Video Wrapper Styling */
+        .video-wrapper {
+            position: absolute;
+            width: 100%; 
+            height: 60vh;
+            transition: transform 0.5s ease-in-out;
+            overflow: hidden;
+            opacity: 0.5; /* Default opacity for the back videos */
+            z-index: 1; /* Default z-index for the back videos */
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Positioning Classes */
+        .front {
+            transform: scale(1.1) translateX(0); /* Slightly enlarge the front video */
+            z-index: 3; /* Ensure the front video is on top */
+            opacity: 1; /* Fully visible for the front video */
+            width: 60%; /* Full width for the front video */
+        }
+
+        .back-left {
+            transform: translateX(-70%) scale(0.9); /* Peek from the left */
+            z-index: 2; /* Ensure the back video is behind the front video */
+        }
+
+        .back-right {
+            transform: translateX(70%) scale(0.9); /* Peek from the right */
+            z-index: 2; /* Ensure the back video is behind the front video */
+        }
+
+        /* Button Styles */
+        .carousel-btn {
+            padding: 8px 16px;
+            margin: 16px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        /* See More Button */
+        .see-more {
+            display: block;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 12px 24px;
+            margin: 20px auto 0;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .see-more:hover {
+            background-color: #444;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 700px) {
+            .carousel-container {
+                max-width: 150px;
+                width: 100%;
+            }
+
+            .video-wrapper {
+                width: 35%; /* Smaller width for back videos */
+                height: 50vh;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .carousel-container {
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-container {
+                max-width: 800px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .carousel-container {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full py-10 bg-gradient-to-b from-gray-600 to-gray-500">
+        <h1 class="mt-4 text-3xl font-semibold text-center md:text-5xl">Hear it from them</h1>
+        <!-- Video Carousel -->
+        <div id="carousel" class="carousel-container w-[300px]">
+            <div id="video1" class="video-wrapper back-left" data-index="0">
+                <video src="https://voilacode.github.io/fresherbot-tailwind/assets/reviews/review1%20(1).mp4" controls class=""></video>
+            </div>
+            <div id="video2" class="video-wrapper front" data-index="1">
+                <video src="/videos/review2.mp4" controls></video>
+            </div>
+            <div id="video3" class="video-wrapper back-right" data-index="2">
+                <video src="/videos/review3.mp4" controls></video>
+            </div>
+        </div>
+        <!-- Carousel Navigation -->
+        <div style="text-align: center;">
+            <button id="prevBtn" class="carousel-btn">Previous</button>
+            <button id="nextBtn" class="carousel-btn">Next</button>
+        </div>
+        <a href="https://www.instagram.com/fresherbot/?hl=en" class="see-more">See More</a>
+    </div>
+    <script>
+        const videos = document.querySelectorAll('.video-wrapper');
+        let currentIndex = 1; // Start with the front video
+
+        // Function to update the video positions and visibility
+        const updateCarousel = () => {
+            const totalVideos = videos.length;
+            videos.forEach((video, index) => {
+                video.classList.remove('front', 'back-left', 'back-right');
+                video.querySelector('video').pause(); // Pause all videos
+            });
+
+            // Set classes for front, back-left, and back-right videos based on current index
+            videos[currentIndex].classList.add('front');
+            videos[(currentIndex + totalVideos - 1) % totalVideos].classList.add('back-left');
+            videos[(currentIndex + 1) % totalVideos].classList.add('back-right');
+            videos[currentIndex].querySelector('video').play(); // Play only the front video
+        };
+
+        // Rotate the carousel in the specified direction
+        const rotateCarousel = (direction) => {
+            if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % videos.length;
+            } else {
+                currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+            }
+            updateCarousel();
+        };
+
+        // Add click events for the next and previous buttons
+        document.getElementById('nextBtn').addEventListener('click', () => rotateCarousel('next'));
+        document.getElementById('prevBtn').addEventListener('click', () => rotateCarousel('prev'));
+
+        // Add click events to each video-wrapper to bring it to the front if it's not already
+        videos.forEach((video, index) => {
+            video.addEventListener('click', (event) => {
+                // Prevent clicks on the video element itself from bubbling up
+                event.stopPropagation();
+                // Only update if the clicked video is not the front video
+                if (!video.classList.contains('front')) {
+                    currentIndex = index;
+                    updateCarousel();
+                }
+            });
+        });
+
+        // Initial call to display the videos correctly
+        updateCarousel();
+    </script>
+</body>
+</html>

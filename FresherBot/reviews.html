@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Video Carousel</title>
+    <style>
+        /* Container Background and Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #333;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .carousel-section {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to bottom, #4b5563, #6b7280);
+        }
+
+        .carousel-container-wrapper {
+            width: 100%;
+            background: linear-gradient(to bottom, #4b5563, #6b7280);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+        }
+
+        .carousel-title {
+            font-size: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+            font-family: "Julius Sans One", sans-serif;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 9 / 16;
+            max-width: 600px;
+            /* Default width for smaller screens */
+            width: 100%;
+            margin: 0 auto;
+            border: 2px solid #00ffcc;
+            border-radius: 8px;
+        }
+
+        /* Video Wrapper Styling */
+        .video-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Positioning Classes */
+        .front {
+            transform: translateX(0%) scale(1.05);
+            z-index: 3;
+        }
+
+        .left {
+            transform: translateX(-100%);
+            z-index: 2;
+        }
+
+        .right {
+            transform: translateX(100%);
+            z-index: 2;
+        }
+
+        /* Button Styles */
+        .carousel-btn {
+            padding: 8px 16px;
+            margin: 16px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        /* See More Button */
+        .see-more-wrapper {
+            margin-top: -2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .see-more {
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: #2563eb;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .see-more:hover {
+            background-color: #1e3a8a;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .carousel-container {
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-container {
+                max-width: 800px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .carousel-container {
+                max-width: 900px;
+            }
+        }
+    </style>
+    <style>
+        
+        .slide-in-left {
+            animation: slide-in-left 0.5s ease-out forwards;
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .slide-in-right {
+            animation: slide-in-right 0.5s ease-out forwards;
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        @keyframes slide-in-left {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-right {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .perspective {
+            perspective: 1000px;
+        }
+
+
+        /* Custom CSS for the cylindrical slider with closer side views */
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            width: 150%;
+            height: 600px;
+            perspective: 1000px;
+        }
+
+        /* Dynamic video sizes for different screen sizes */
+        .video-wrapper {
+            position: absolute;
+            transition: transform 1s ease;
+            width: 18vw;
+            height: 32vw;
+        }
+
+        /* Responsive sizes */
+        @media (max-width: 768px) {
+            .video-wrapper {
+                width: 40vw;
+                /* Larger size for smaller screens */
+                height: 71vw;
+                /* Maintaining 9:16 ratio */
+            }
+        }
+
+        .front {
+            z-index: 3;
+            transform: translateX(0%) scale(1);
+        }
+
+        .left {
+            z-index: 2;
+            transform: translateX(-80%) scale(0.85);
+        }
+
+        .right {
+            z-index: 2;
+            transform: translateX(80%) scale(0.85);
+        }
+
+        video {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .carousel-controls button {
+            padding: 10px 20px;
+            background-color: #1d4ed8;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background-color: #2563eb;
+        }
+
+        .typewriter {
+            opacity: 0;
+            display: inline-block;
+            /* Ensures letters stay in line without gaps */
+            animation: typewriter 0.5s forwards;
+            /* Adjusted duration for smoother effect */
+        }
+
+        @keyframes typewriter {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full p-3 bg-gradient-to-b from-gray-600 to-gray-500">
+    <div class="w-full bg-gradient-to-b from-gray-600 to-gray-500">
+        <h1 class="mt-4 text-2xl font-semibold text-center text-white md:text-4xl font-julius">Hear it from them
+        </h1>
+
+        <!-- Video Carousel -->
+        <div id="carousel" class="carousel-container ">
+            <div id="video1" class="video-wrapper front" data-index="0">
+                <video src="https://voilacode.github.io/fresherbot-tailwind/assets/reviews/review1%20(1).mp4"
+                    controls></video>
+            </div>
+
+            <div id="video2" class="video-wrapper left" data-index="1">
+                <video src="/videos/review2.mp4"
+                    controls></video>
+            </div>
+
+            <div id="video3" class="video-wrapper right" data-index="2">
+                <video src="/videos/review3.mp4"
+                    controls></video>
+            </div>
+        </div>
+        <div class="-mt-10">
+            <div class="flex justify-center sm:mt-10">
+                <a href="#" class="p-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-900">
+                    See More
+                </a>
+            </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <!-- <div class="carousel-controls">
+            <button id="prevBtn">Prev</button>
+            <button id="nextBtn">Next</button>
+        </div> -->
+    </div>
+</div>
+<script>
+    const videos = document.querySelectorAll('.video-wrapper');
+    let currentIndex = 0;
+    const updateCarousel = () => {
+        videos.forEach((video, index) => {
+            video.classList.remove('front', 'left', 'right');
+            video.querySelector('video').pause(); // Pause all videos
+        });
+
+        const totalVideos = videos.length;
+        videos[currentIndex].classList.add('front');
+        videos[(currentIndex + totalVideos - 1) % totalVideos].classList.add('left');
+        videos[(currentIndex + 1) % totalVideos].classList.add('right');
+
+        // Play the front video
+        const frontVideoElement = videos[currentIndex].querySelector('video');
+        frontVideoElement.play();
+
+        // Add click event to front video for toggling play/pause
+        frontVideoElement.onclick = () => {
+            if (frontVideoElement.paused) {
+                frontVideoElement.play();
+            } else {
+                frontVideoElement.pause();
+            }
+        };
+    };
+
+    const rotateCarousel = (direction) => {
+        if (direction === 'next') {
+            currentIndex = (currentIndex + 1) % videos.length;
+        } else {
+            currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+        }
+        updateCarousel();
+    };
+
+    // Play video on click
+    videos.forEach((video) => {
+        video.addEventListener('click', () => {
+            currentIndex = parseInt(video.getAttribute('data-index'));
+            updateCarousel();
+        });
+    });
+
+    document.getElementById('nextBtnn').addEventListener('click', () => rotateCarousel('next'));
+    document.getElementById('prevBtnn').addEventListener('click', () => rotateCarousel('prev'));
+
+    // Initial update to set video positions
+    updateCarousel();
+</script>
+    
+</body>
+
+</html>
